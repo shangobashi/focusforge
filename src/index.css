@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bluelabs-dark text-bluelabs-text font-sans antialiased;
+    background-color: #0b0d12;
+    background-image: none;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar for a cleaner look */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-bluelabs-dark;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-bluelabs-primary;
+  }
+
+  .card-rim {
+    @apply relative border border-white/5 rounded-2xl bg-bluelabs-surface/50 backdrop-blur-sm overflow-hidden;
+    isolation: isolate;
+    --rim-angle: 0deg;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-rim::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--rim-angle),
+      rgba(59, 130, 246, 0.0) 0deg,
+      rgba(59, 130, 246, 0.45) 70deg,
+      rgba(59, 130, 246, 0.0) 140deg,
+      rgba(59, 130, 246, 0.0) 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .card-rim > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bg-waves {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .bg-waves path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .bg-waves defs path {
+    stroke: #ffffff;
+    stroke-width: 2px;
+  }
+
+}
